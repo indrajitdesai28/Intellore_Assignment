@@ -1,0 +1,26 @@
+
+Sql Statment : 
+==================================================================================
+SELECT title FROM books WHERE id IN (SELECT book_id FROM ratings WHERE rating >= 4) ORDER BY title;
+==================================================================================
+
+
+Result:
+Number of Records: 2
+==================================================================
+title
+A Tale Of Two Cities
+The Hobbit
+=====================================================================
+
+
+Store Procedure :
+
+==================================================================================
+CREATE PROCEDURE dbo.GetBooksByRatings @Rating int
+AS
+SELECT title FROM books WHERE id IN (SELECT book_id FROM ratings WHERE rating >= @Rating) ORDER BY title
+GO;
+
+==================================================================================
+EXEC SelectAllCustomers 4
